@@ -1,0 +1,147 @@
+{
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Read the contents of a file from the local filesystem by path.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "Absolute or relative file path" },
+          "encoding": { "type": "string", "description": "Text encoding, default utf-8" }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "write_file",
+      "description": "Write or overwrite a file on the local filesystem.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["path", "content"]
+      }
+    },
+    {
+      "name": "list_directory",
+      "description": "List files and folders in a directory on the filesystem.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "recursive": { "type": "boolean" }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "git_status",
+      "description": "Show the working tree status of a git repository.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "cwd": { "type": "string", "description": "Repository working directory" }
+        }
+      }
+    },
+    {
+      "name": "git_commit",
+      "description": "Stage files and create a git commit with a message in the repository.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "paths": { "type": "array", "items": { "type": "string" } },
+          "cwd": { "type": "string" }
+        },
+        "required": ["message"]
+      }
+    },
+    {
+      "name": "git_diff",
+      "description": "Show git diff for staged or unstaged changes in the repository.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "staged": { "type": "boolean" },
+          "path": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "browser_navigate",
+      "description": "Open a URL in a headless browser and wait for the page to load.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "waitUntil": { "type": "string" }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "browser_click",
+      "description": "Click an element on the current browser page by CSS selector.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "selector": { "type": "string" }
+        },
+        "required": ["selector"]
+      }
+    },
+    {
+      "name": "web_search",
+      "description": "Search the public web and return ranked result snippets.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "limit": { "type": "integer" }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "http_fetch",
+      "description": "Fetch a URL over HTTP and return status, headers, and body text.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "method": { "type": "string" },
+          "headers": { "type": "object" }
+        },
+        "required": ["url"]
+      }
+    },
+    {
+      "name": "shell_exec",
+      "description": "Execute a shell command in a working directory and capture stdout/stderr.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "command": { "type": "string" },
+          "cwd": { "type": "string" },
+          "timeout_ms": { "type": "integer" }
+        },
+        "required": ["command"]
+      }
+    },
+    {
+      "name": "memory_store",
+      "description": "Store a key-value fact in durable agent memory for later recall.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "key": { "type": "string" },
+          "value": { "type": "string" }
+        },
+        "required": ["key", "value"]
+      }
+    }
+  ]
+}
